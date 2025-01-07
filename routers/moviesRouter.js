@@ -1,9 +1,9 @@
 const express = require('express')
 const router = express.Router()
 const movies = require('../movies')
+const  {myLogger} = require('../middleware/logger')
 
-
-router.get('/',(req,res)=>{
+router.get('/',myLogger,(req,res)=>{
     try{
      res.status(200).json(movies)
   
@@ -51,7 +51,7 @@ router.get('/',(req,res)=>{
   });
 
   
-  router.patch('/:id', (req, res) => {
+  router.patch('/:id',myLogger, (req, res) => {
     try {
         const movieID = parseInt(req.params.id, 10);
         const { rating } = req.body;
